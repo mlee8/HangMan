@@ -1,12 +1,12 @@
 import java.util.*;
 import java.lang.*;
-import java.io.IOException;
+
 public class Hangman 
 {
     private int max=0;
-    public static void main(String[] args) throws IOException, InterruptedException
+    public static void main(String[] args) 
     {
-        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        
         //create instance things and lists you'll need later
 
         Word a=new NameWord("michael", "Proper Noun", "First Letter is M");
