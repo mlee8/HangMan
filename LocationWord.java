@@ -1,38 +1,30 @@
 public class LocationWord extends Word
 {
-    // instance variables - replace the example below with your own
-    
     private String finalHint;
-    /**
-     * Constructor for objects of class HumanWord
-     */
+
+    // Creates a new Word that is a Location
     public LocationWord(String name1, String description1,String lastHint)
     {
         super(name1,description1);
         finalHint=lastHint;
-        
-        
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    
+    // Gives the first hint of the word
     public String hint1()
     {
         return "This is not alive";
     }
+    // Gives the second hint of the word
     public String hint2()
     {
         return "This is outdoors";
     }
+    // Gives the exact category of the word
     public String hintCategory()
     {
         return "This is a location/place in nature";
     }
+    // Gives the specific Final Hint of the word
     public String getFinalHint()
     {
         return finalHint;

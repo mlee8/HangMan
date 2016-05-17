@@ -3,6 +3,7 @@ public abstract class Word
     private String word; 
     private String partOfSpeech;
 
+    // Creates new Word
     public Word(String name, String description) 
     { 
         word=name; 
@@ -27,7 +28,8 @@ public abstract class Word
     { 
         return word; 
     } 
-
+    
+    // abstract methods for each hint of each different word
     public abstract String hint1();
     public abstract String hint2();
     public abstract String hintCategory();
