@@ -17,7 +17,8 @@ public class Hangman
         String next="y";
         while (next.equals("Y") || next.equals("y"))
         {
-            Word WORD=words.get((int)(Math.random()*words.size()));
+            int index=(int)(Math.random()*words.size());
+            Word WORD=words.get(index);
             char[] letters=WORD.getWord().toCharArray();
             List wrong = new ArrayList();
             char[] progress= new char[WORD.getNumLetters()];
@@ -32,7 +33,7 @@ public class Hangman
             Hangman hangman1=new Hangman();
             hangman1.changeDifficulty(choice); 
             //where the main things happen
-            int count=1;
+            int count=0;
             System.out.println("\n\nPart of Speech: " + WORD.getPartOfSpeech());
 
             while(count<hangman1.max)
@@ -40,8 +41,9 @@ public class Hangman
                 Scanner scan=new Scanner(System.in);
                 System.out.println("\n \n \nGuess a letter: ");   
                 String guesss = scan.nextLine();
-                char guess = guesss.charAt(0);
+                char guess=guesss.charAt(0);
                 boolean correct=false;
+                
                 System.out.println("Your current progress is: "); 
                 for(int i=0;i<letters.length;i++)
                 {
@@ -50,7 +52,6 @@ public class Hangman
                         progress[i]=guess;
                         correct=true;
                     }
-
                     System.out.print(progress[i]);
                 }
                 if(correct==false)
@@ -58,6 +59,7 @@ public class Hangman
                     wrong.add(guess);
                     count++;
                 }
+                System.out.print("\t\tGuesses Left: " + (hangman1.max-count));
                 System.out.println("\nYou have guessed: ");   
                 for(int i=0;i<wrong.size();i++)
                 {
@@ -81,25 +83,26 @@ public class Hangman
                     {
                         System.out.println("\n\nCLUE:"+ WORD.getFinalHint());
                     }
-                    count++;
                 }
 
                 if (Arrays.equals( letters,  progress))
                 {
                     System.out.println ("\n\nCongrats, you have guessed the word");
                     count=hangman1.max;
+                    words.remove(index);
 
                 }
 
             }
             if (!Arrays.equals( letters,  progress))
             {
-                System.out.println("\nYou Lost!!!");
+                System.out.println("\nYou Lost!!!\n");
                 System.out.println("The word was: " + WORD.getWord() + "\n");
             }
             System.out.println("Keep Going? Enter Y or N ");
             Scanner scan = new Scanner(System.in);
             next = scan.nextLine();
+            
         }
         System.exit(0);
     }
