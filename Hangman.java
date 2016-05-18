@@ -1,3 +1,4 @@
+//Michael Lee, David Hou, Jayden Cho
 import java.util.*;
 import java.lang.*;
 
@@ -37,13 +38,24 @@ public class Hangman
             System.out.println("\n\nPart of Speech: " + WORD.getPartOfSpeech());
 
             while(count<hangman1.max)
-            {           
-                Scanner scan=new Scanner(System.in);
-                System.out.println("\n \n \nGuess a letter: ");   
-                String guesss = scan.nextLine();
-                char guess=guesss.charAt(0);
+            {      
+                String guess1="asdf";
+                System.out.print("\nLetters: " + WORD.getNumLetters());
+                while(guess1.length()!=1)
+                {
+                    
+                    Scanner scan=new Scanner(System.in);
+                    System.out.println("\n \n \nGuess a letter: ");   
+                    guess1=scan.nextLine();
+                    if(guess1.length()!=1){
+                        System.out.println("\n \nPlease enter a letter");
+
+                    }
+                }
+                char guess=guess1.charAt(0);
+
                 boolean correct=false;
-                
+
                 System.out.println("Your current progress is: "); 
                 for(int i=0;i<letters.length;i++)
                 {
@@ -99,10 +111,10 @@ public class Hangman
                 System.out.println("\nYou Lost!!!\n");
                 System.out.println("The word was: " + WORD.getWord() + "\n");
             }
-            System.out.println("Keep Going? Enter Y or N ");
+            System.out.println("Keep Going? Enter Y to continue, anything else to quit: ");
             Scanner scan = new Scanner(System.in);
             next = scan.nextLine();
-            
+
         }
         System.exit(0);
     }
