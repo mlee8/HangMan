@@ -27,10 +27,13 @@ public class Hangman
             {
                 progress[i]="_".charAt(0);
             }
-
-            Scanner scan1=new Scanner (System.in);
+            
+            
+             Scanner scan1=new Scanner (System.in);
             System.out.println("Enter 1 for easy, enter 2 for hard: ");
             int choice=scan1.nextInt();
+           
+            
             Hangman hangman1=new Hangman();
             hangman1.changeDifficulty(choice); 
             //where the main things happen
@@ -71,8 +74,10 @@ public class Hangman
                     wrong.add(guess);
                     count++;
                 }
-                System.out.print("\t\tGuesses Left: " + (hangman1.max-count));
-                System.out.println("\nYou have guessed: ");   
+                
+                System.out.println("\nYou have guessed: "+ "\t\t" + "Guesses Left: "+ + (hangman1.max-count));   
+                
+                
                 for(int i=0;i<wrong.size();i++)
                 {
                     System.out.print(wrong.get(i) + " ");
