@@ -27,13 +27,32 @@ public class Hangman
             {
                 progress[i]="_".charAt(0);
             }
+
             
-            
-             Scanner scan1=new Scanner (System.in);
             System.out.println("Enter 1 for easy, enter 2 for hard: ");
-            int choice=scan1.nextInt();
-           
-            
+            int choice=0;
+            boolean isCorrect=false;
+            while (isCorrect==false)
+            {
+                try
+                {
+                    
+                    //nextInt will throw InputMismatchException
+                    //if the next token does not match the Integer
+                    //regular expression, or is out of range
+                     Scanner scan1=new Scanner (System.in);
+                    choice=scan1.nextInt();
+                    isCorrect=true;
+                }
+                catch(InputMismatchException exception)
+                {
+                    //Print "This is not an integer"
+                    //when user put other than integer
+                    System.out.print("This is not an integer" );
+                    System.out.println("Please enter 1 or 2: ");
+                }
+            }
+
             Hangman hangman1=new Hangman();
             hangman1.changeDifficulty(choice); 
             //where the main things happen
@@ -46,7 +65,7 @@ public class Hangman
                 System.out.print("\nLetters: " + WORD.getNumLetters());
                 while(guess1.length()!=1)
                 {
-                    
+
                     Scanner scan=new Scanner(System.in);
                     System.out.println("\n \n \nGuess a letter: ");   
                     guess1=scan.nextLine();
@@ -74,10 +93,9 @@ public class Hangman
                     wrong.add(guess);
                     count++;
                 }
-                
+
                 System.out.println("\nYou have guessed: "+ "\t\t" + "Guesses Left: "+ + (hangman1.max-count));   
-                
-                
+
                 for(int i=0;i<wrong.size();i++)
                 {
                     System.out.print(wrong.get(i) + " ");
@@ -135,4 +153,5 @@ public class Hangman
             max=7;
         }
     }
+
 }
