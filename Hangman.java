@@ -61,7 +61,7 @@ public class Hangman
             //this outer while loop makes sure that either 1 or 2 was entered for difficulty. Prompts user to re-enter a difficulty
             while (choice!=1 && choice!=2)
             {
-                System.out.println("Enter 1 for easy, enter 2 for hard: ");
+                System.out.println("Please Enter 1 for easy, enter 2 for hard: ");
 
                 //exception caused by not entering an integer for difficulty is caught. Prompts user to re-enter a difficulty
                 boolean isCorrect=false;
@@ -125,7 +125,7 @@ public class Hangman
                         if(guess1.length()==1){
                             for(int i=0;i<progress.length;i++)
                             {
-                                if ((guess1.charAt(0)==(progress[i])))
+                                if (Character.toLowerCase(guess1.charAt(0))==Character.toLowerCase((progress[i])))
                                 {
 
                                     repeat=true;
