@@ -5,53 +5,72 @@ import java.lang.*;
 public class Hangman 
 {
     private int max=0;
+    /**
+     * Method main
+     *
+     * @param args A parameter
+     */
     public static void main(String[] args) 
     {
 
-        //create instance things and lists you'll need later
+        //creates instances of Word and an ArrayList of Word objects.
 
-        Word a=new NameWord("michael", "Proper Noun", "First Letter is M");
-        Word b=new NameWord("david", "Proper Noun", "First Letter is D");
+        Word a=new NameWord("Michael", "Proper Noun", "First Letter is M");
+        Word b=new NameWord("David", "Proper Noun", "First Letter is D");
         ArrayList<Word> words=new ArrayList<Word>();
         words.add(a);
         words.add(b);
         String next="y";
+        
+        //while loop to run the game multiple times if user enters y
         while (next.equals("Y") || next.equals("y"))
         {
+            //chooses a random word in words ArrayList to use for the game
+            //creates character array letters for the random word that was chosen, creates an ArrayList "wrong" to add wrong guesses to
+            //creates ArrayList wrong of Characters to keep track of wrong guesses
+            //creates character array progress to keep track of correct guesses 
+            System.out.println('\f');
             int index=(int)(Math.random()*words.size());
             Word WORD=words.get(index);
             char[] letters=WORD.getWord().toCharArray();
-            List wrong = new ArrayList();
+            ArrayList<Character> wrong = new ArrayList<Character>();
             char[] progress= new char[WORD.getNumLetters()];
             for(int i=0;i<progress.length;i++)
             {
                 progress[i]="_".charAt(0);
             }
 
-            System.out.println("Enter 1 for easy, enter 2 for hard: ");
-            int choice=0;
-            boolean isCorrect=false;
-            while (isCorrect==false)
+            int choice = 0;   
+            //this outer while loop makes sure that either 1 or 2 was entered for difficulty. Prompts user to re-enter a difficulty
+            while (choice!=1 && choice!=2)
             {
-                try
-                {
+                System.out.println("Enter 1 for easy, enter 2 for hard: ");
 
-                    //nextInt will throw InputMismatchException
-                    //if the next token does not match the Integer
-                    //regular expression, or is out of range
-                    Scanner scan1=new Scanner (System.in);
-                    choice=scan1.nextInt();
-                    isCorrect=true;
-                }
-                catch(InputMismatchException exception)
+                //exception caused by not entering an integer for difficulty is caught. Prompts user to re-enter a difficulty
+                boolean isCorrect=false;
+                while (isCorrect==false)
                 {
-                    //Print "This is not an integer"
-                    //when user put other than integer
-                    System.out.print("This is not an integer, " );
-                    System.out.println("please enter 1 or 2: ");
+                    try
+                    {
+
+                        //nextInt will throw InputMismatchException
+                        //if the next token does not match the Integer
+                        //regular expression, or is out of range
+                        Scanner scan1=new Scanner (System.in);
+                        choice=scan1.nextInt();
+                        isCorrect=true;
+                    }
+                    catch(InputMismatchException exception)
+                    {
+                        //Print "This is not an integer"
+                        //when user put other than integer
+                        System.out.print("This is not an integer, " );
+                        System.out.println("please enter 1 or 2: ");
+                    }
                 }
             }
-
+            
+            System.out.println('\f');
             Hangman hangman1=new Hangman();
             hangman1.changeDifficulty(choice); 
             //where the main things happen
@@ -60,52 +79,73 @@ public class Hangman
 
             while(count<hangman1.max)
             {      
+                
                 String guess1="asdf";
                 System.out.print("\nLetters: " + WORD.getNumLetters());
                 boolean repeat=true;
+                //Checks if input is valid. Input must be only one letter and have not been guessed yet.
                 while(guess1.length()!=1 || repeat==true)
                 {
-                   repeat=false;
+                    repeat=false;
                     Scanner scan=new Scanner(System.in);
                     System.out.println("\n \nGuess a letter: ");   
                     guess1=scan.nextLine();
+                   
+                   
                     if(guess1.length()!=1){
-                        System.out.println("\n \nPlease one letter");
+                        System.out.println("\n \nPlease enter one letter");
 
                     }
                     if(guess1.length()==1){
                         for(int i=0;i<progress.length;i++)
                         {
-                            if (guess1.charAt(0)==(progress[i]))
+                            if ((guess1.charAt(0)==(progress[i])))
                             {
-                                
+
                                 repeat=true;
                             }
-                            
-                            
+
+                        }
+                        if(wrong.contains(guess1.charAt(0)))
+                        {
+                            repeat=true;
                         }
                         if (repeat)
-                            {
-                                System.out.println("\nYou have already entered this letter, please enter a new one.");
-                            }
+                        {
+                            System.out.println("\nYou have already entered this letter, please enter a new one.");
+                        }
+                        
                     }
+                    
+                    
 
                 }
+                System.out.println('\f');
+                
                 char guess=guess1.charAt(0);
 
                 boolean correct=false;
 
                 System.out.println("Your current progress is: "); 
-                
+
+                //Checks to see if the guess is a letter in the word. If it is, it will add the character guess into progress array and print it. 
+                //Makes guesses case insensitive, but will make proper nouns have first letter capital even if guess was lowercase when progress is displayed.
                 for(int i=0;i<letters.length;i++)
                 {
 
-                    if(letters[i]==guess)
+                    if(Character.toLowerCase(letters[i])==Character.toLowerCase(guess))
                     {
-                      
-                        progress[i]=guess;
-                        correct=true;
-                    
+                        if (WORD.getPartOfSpeech().equals("Proper Noun")&& i==0)
+                        {
+
+                            progress[i]=Character.toUpperCase(guess);
+                            correct=true;
+                        }
+                        else
+                        {
+                            progress[i]=Character.toLowerCase(guess);
+                            correct=true;
+                        }
                     }
                     System.out.print(progress[i]);
                 }
@@ -114,8 +154,9 @@ public class Hangman
                     wrong.add(guess);
                     count++;
                 }
+                
 
-                System.out.println("\nYou have guessed: "+ "\t\t" + "Guesses Left: "+ + (hangman1.max-count));   
+                System.out.println("\nYou have guessed incorrectly: "+ "\t\t" + "Guesses Left: "+ + (hangman1.max-count));   
 
                 for(int i=0;i<wrong.size();i++)
                 {
@@ -148,7 +189,7 @@ public class Hangman
                     words.remove(index);
 
                 }
-
+                
             }
             if (!Arrays.equals( letters,  progress))
             {
@@ -163,6 +204,7 @@ public class Hangman
         System.exit(0);
     }
 
+    //method to link a variable for maximum guesses to a chosen difficulty
     public void changeDifficulty(int choice1)
     {
         if (choice1==1)
