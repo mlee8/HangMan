@@ -28,7 +28,6 @@ public class Hangman
                 progress[i]="_".charAt(0);
             }
 
-            
             System.out.println("Enter 1 for easy, enter 2 for hard: ");
             int choice=0;
             boolean isCorrect=false;
@@ -36,11 +35,11 @@ public class Hangman
             {
                 try
                 {
-                    
+
                     //nextInt will throw InputMismatchException
                     //if the next token does not match the Integer
                     //regular expression, or is out of range
-                     Scanner scan1=new Scanner (System.in);
+                    Scanner scan1=new Scanner (System.in);
                     choice=scan1.nextInt();
                     isCorrect=true;
                 }
@@ -48,8 +47,8 @@ public class Hangman
                 {
                     //Print "This is not an integer"
                     //when user put other than integer
-                    System.out.print("This is not an integer" );
-                    System.out.println("Please enter 1 or 2: ");
+                    System.out.print("This is not an integer, " );
+                    System.out.println("please enter 1 or 2: ");
                 }
             }
 
@@ -63,28 +62,50 @@ public class Hangman
             {      
                 String guess1="asdf";
                 System.out.print("\nLetters: " + WORD.getNumLetters());
-                while(guess1.length()!=1)
+                boolean repeat=true;
+                while(guess1.length()!=1 || repeat==true)
                 {
-
+                   repeat=false;
                     Scanner scan=new Scanner(System.in);
-                    System.out.println("\n \n \nGuess a letter: ");   
+                    System.out.println("\n \nGuess a letter: ");   
                     guess1=scan.nextLine();
                     if(guess1.length()!=1){
-                        System.out.println("\n \nPlease enter a letter");
+                        System.out.println("\n \nPlease one letter");
 
                     }
+                    if(guess1.length()==1){
+                        for(int i=0;i<progress.length;i++)
+                        {
+                            if (guess1.charAt(0)==(progress[i]))
+                            {
+                                
+                                repeat=true;
+                            }
+                            
+                            
+                        }
+                        if (repeat)
+                            {
+                                System.out.println("\nYou have already entered this letter, please enter a new one.");
+                            }
+                    }
+
                 }
                 char guess=guess1.charAt(0);
 
                 boolean correct=false;
 
                 System.out.println("Your current progress is: "); 
+                
                 for(int i=0;i<letters.length;i++)
                 {
+
                     if(letters[i]==guess)
                     {
+                      
                         progress[i]=guess;
                         correct=true;
+                    
                     }
                     System.out.print(progress[i]);
                 }
