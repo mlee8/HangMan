@@ -12,31 +12,53 @@ public class Hangman
      */
     public static void main(String[] args) 
     {
-
+        System.out.println('\f');
         //creates instances of Word and an ArrayList of Word objects.
-       String man[] = new String[7];
-       // man[0] = " --\n   |\n   |\n   |\n_____\n";
+        String man[] = new String[7];
+        // man[0] = " --\n   |\n   |\n   |\n_____\n";
         //man[1] = " --\n o |\n   |\n   |\n_____\n";
-       // man[2] = " --\n o |\n/  |\n   |\n_____\n";
+        // man[2] = " --\n o |\n/  |\n   |\n_____\n";
         //man[3] = " --\n o |\n/| |\n   |\n_____\n";
-       // man[4] = " --\n o |\n/|\\|\n   |\n_____\n";
-       // man[5] = " --\n o |\n/|\\|\n/  |\n_____\n";
-       System.out.println("\t\t WELCOME TO THE GAME OF HANGMAN");
-       System.out.println("\n\t Created by: Michael Lee, David Hou, Jayden Cho");
-       System.out.print("\n\n");
-       man[6] = "\t\t\t\t--\n\t\t\t\t o |\n\t\t\t\t/|\\|\n\t\t\t\t/ \\|\n\t\t\t\t_____\n\t\t\t\t";
-       
-            System.out.println(man[6]);
-       System.out.print("\n\n"); 
+        // man[4] = " --\n o |\n/|\\|\n   |\n_____\n";
+        // man[5] = " --\n o |\n/|\\|\n/  |\n_____\n";
+        System.out.println("\t\t WELCOME TO THE GAME OF HANGMAN");
+        System.out.println("\n\t Created by: Michael Lee, David Hou, Jayden Cho");
+        System.out.print("\n\n");
+        man[6] = "\t\t\t\t--\n\t\t\t\t o |\n\t\t\t\t/|\\|\n\t\t\t\t/ \\|\n\t\t\t\t_____\n\t\t\t\t";
+
+        System.out.println(man[6]);
+        System.out.print("\n\n"); 
         System.out.println("Enter anything to begin game:");
         Scanner scan2=new Scanner (System.in);
-       String choice2=scan2.nextLine();
+        String choice2=scan2.nextLine();
+
+        Word a=new NameWord("Michael", "Proper Noun", "His last name is Lee.");
+        Word b=new NameWord("David", "Proper Noun", "Hou is he doing?");
+        Word c=new NameWord("Jayden", "Proper Noun", "He is a Korean male.");
+        Word d=new NameWord("Abhi", "Proper Noun", "This is a Bee.");
+        Word y=new NameWord("Basit", "Proper Noun", "He is related to Zayn Malik.");
         
-        Word a=new NameWord("Michael", "Proper Noun", "First Letter is M");
-        Word b=new NameWord("David", "Proper Noun", "First Letter is D");
+        Word f=new LocationWord("Stevenson", "Proper Noun", "It is a school");
+        Word g=new LocationWord("Hollywood", "Proper Noun", "It is a sign.");
+        Word h=new LocationWord("Chicago", "Proper Noun", "This is the Windy City.");
+        Word z=new LocationWord("Yellowstone", "Proper Noun", "It is a park.");
+        Word j=new LocationWord("Stonehenge", "Proper Noun", "It is a rocky thing in England.");
+        
+        Word k=new AnimalWord("yak", "noun", "This is an animal with horns.");
+        Word l=new AnimalWord("buffalo", "noun", "Wild Wings");
+        Word m=new AnimalWord("elephant", "noun", "Banana Republic logo.");
+        Word n=new AnimalWord("orangutan", "noun", "This is a primate.");
+        Word o=new AnimalWord("lizard", "noun", "The gecko from Geico is this animal.");
+        
+        Word p=new ObjectWord("jazz", "noun", "This is a type of music.");
+        Word q=new ObjectWord("bagpipes", "noun", "This is an instrument in Europe.");
+        Word r=new ObjectWord("BlueJ", "Proper Noun", "This is a Computer thing.");
+        Word s=new ObjectWord("Adidas", "Proper Noun", "This is a brand.");
+        Word t=new ObjectWord("basketball", "noun", "This is a sport.");
+        
         ArrayList<Word> words=new ArrayList<Word>();
-        words.add(a);
-        words.add(b);
+        words.add(a);words.add(b);words.add(c);words.add(d);words.add(y);words.add(f);words.add(g);words.add(h);words.add(z);words.add(j); 
+        words.add(k);words.add(l);words.add(m);words.add(n);words.add(o);words.add(p);words.add(q);words.add(r);words.add(s);words.add(t);
         String next="y";
 
         //while loop to run the game multiple times if user enters y
@@ -105,131 +127,130 @@ public class Hangman
                 while(guess1.length()!=1 || repeat==true)
                 {
                     repeat=false;
-                     System.out.println("\n \nGuess a letter: "); 
-                    
+                    System.out.println("\n \nGuess a letter: "); 
+
                     try{
-                        
+
                         Scanner scan=new Scanner(System.in);
-                    guess1=scan.next();
-                       
-                    exception=true;
-                       
+                        guess1=scan.next();
+
+                        exception=true;
+
                     } catch(InputMismatchException e) {
                         System.out.println("Please do not enter a number, enter a letter: ");
                     }
 
-                        if(guess1.length()!=1){
-                            System.out.println("\n \nPlease enter one letter");
+                    if(guess1.length()!=1){
+                        System.out.println("\n \nPlease enter one letter");
 
-                        }
-                        if(guess1.length()==1){
-                            for(int i=0;i<progress.length;i++)
+                    }
+                    if(guess1.length()==1){
+                        for(int i=0;i<progress.length;i++)
+                        {
+                            if (Character.toLowerCase(guess1.charAt(0))==Character.toLowerCase((progress[i])))
                             {
-                                if (Character.toLowerCase(guess1.charAt(0))==Character.toLowerCase((progress[i])))
-                                {
 
-                                    repeat=true;
-                                }
-
-                            }
-                            if(wrong.contains(guess1.charAt(0)))
-                            {
                                 repeat=true;
                             }
-                            if (repeat)
-                            {
-                                System.out.println("\nYou have already entered this letter, please enter a new one.");
-                            }
 
                         }
-
-
-                    }
-                    System.out.println('\f');
-
-                    char guess=guess1.charAt(0);
-
-                    boolean correct=false;
-
-                    System.out.println("Your current progress is: "); 
-
-                    //Checks to see if the guess is a letter in the word. If it is, it will add the character guess into progress array and print it. 
-                    //Makes guesses case insensitive, but will make proper nouns have first letter capital even if guess was lowercase when progress is displayed.
-                    for(int i=0;i<letters.length;i++)
-                    {
-
-                        if(Character.toLowerCase(letters[i])==Character.toLowerCase(guess))
+                        if(wrong.contains(guess1.charAt(0)))
                         {
-                            if (WORD.getPartOfSpeech().equals("Proper Noun")&& i==0)
-                            {
-
-                                progress[i]=Character.toUpperCase(guess);
-                                correct=true;
-                            }
-                            else
-                            {
-                                progress[i]=Character.toLowerCase(guess);
-                                correct=true;
-                            }
+                            repeat=true;
                         }
-                        System.out.print(progress[i]);
-                    }
-                    if(correct==false)
-                    {
-                        wrong.add(guess);
-                        count++;
-                    }
-
-                    System.out.println("\nYou have guessed incorrectly: "+ "\t\t" + "Guesses Left: "+ + (hangman1.max-count));   
-                    for(int i=0;i<wrong.size();i++)
-                    {
-                        System.out.print(wrong.get(i) + " ");
-                    }
-                    if(correct==false)
-                    {
-                        if (count==3)
+                        if (repeat)
                         {
-                            System.out.println("\n\nCLUE:"+ WORD.hint1());
+                            System.out.println("\nYou have already entered this letter, please enter a new one.");
                         }
-                        else if(count==4)
-                        {
-                            System.out.println("\n\nCLUE:"+ WORD.hint2());
-                        }
-                        else if(count==5)
-                        {
-                            System.out.println("\n\nCLUE:"+ WORD.hintCategory());
-                        }
-                        else if(count==6)
-                        {
-                            System.out.println("\n\nCLUE:"+ WORD.getFinalHint());
-                        }
-                    }
-
-                    if (Arrays.equals( letters,  progress))
-                    {
-                        System.out.println ("\n\nCongrats, you have guessed the word");
-                        count=hangman1.max;
-                        words.remove(index);
 
                     }
 
                 }
-                if (!Arrays.equals( letters,  progress))
+                System.out.println('\f');
+
+                char guess=guess1.charAt(0);
+
+                boolean correct=false;
+
+                System.out.println("Your current progress is: "); 
+
+                //Checks to see if the guess is a letter in the word. If it is, it will add the character guess into progress array and print it. 
+                //Makes guesses case insensitive, but will make proper nouns have first letter capital even if guess was lowercase when progress is displayed.
+                for(int i=0;i<letters.length;i++)
                 {
-                    System.out.println("\nYou Lost!!!\n");
-                    System.out.println("The word was: " + WORD.getWord() + "\n");
+
+                    if(Character.toLowerCase(letters[i])==Character.toLowerCase(guess))
+                    {
+                        if (WORD.getPartOfSpeech().equals("Proper Noun")&& i==0)
+                        {
+
+                            progress[i]=Character.toUpperCase(guess);
+                            correct=true;
+                        }
+                        else
+                        {
+                            progress[i]=Character.toLowerCase(guess);
+                            correct=true;
+                        }
+                    }
+                    System.out.print(progress[i]);
                 }
-                System.out.println("Keep Going? Enter Y to continue, anything else to quit: ");
-                Scanner scan = new Scanner(System.in);
-                next = scan.nextLine();
+                if(correct==false)
+                {
+                    wrong.add(guess);
+                    count++;
+                }
+
+                System.out.println("\nYou have guessed incorrectly: "+ "\t\t" + "Guesses Left: "+ + (hangman1.max-count));   
+                for(int i=0;i<wrong.size();i++)
+                {
+                    System.out.print(wrong.get(i) + " ");
+                }
+                if(correct==false)
+                {
+                    if (count==3)
+                    {
+                        System.out.println("\n\nCLUE:"+ WORD.hint1());
+                    }
+                    else if(count==4)
+                    {
+                        System.out.println("\n\nCLUE:"+ WORD.hint2());
+                    }
+                    else if(count==5)
+                    {
+                        System.out.println("\n\nCLUE:"+ WORD.hintCategory());
+                    }
+                    else if(count==6)
+                    {
+                        System.out.println("\n\nCLUE:"+ WORD.getFinalHint());
+                    }
+                }
+
+                if (Arrays.equals( letters,  progress))
+                {
+                    System.out.println ("\n\nCongrats, you have guessed the word");
+                    count=hangman1.max;
+                    words.remove(index);
+
+                }
 
             }
-            System.exit(0);
-        }
+            if (!Arrays.equals( letters,  progress))
+            {
+                System.out.println("\nYou Lost!!!\n");
+                System.out.println("The word was: " + WORD.getWord() + "\n");
+            }
+            System.out.println("Keep Going? Enter Y to continue, anything else to quit: ");
+            Scanner scan = new Scanner(System.in);
+            next = scan.nextLine();
 
-        //method to link a variable for maximum guesses to a chosen difficulty
-        public void changeDifficulty(int choice1)
-        {
+        }
+        System.exit(0);
+    }
+
+    //method to link a variable for maximum guesses to a chosen difficulty
+    public void changeDifficulty(int choice1)
+    {
         if (choice1==1)
         {
             max=10;
