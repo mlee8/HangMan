@@ -1,7 +1,14 @@
 //Michael Lee, David Hou, Jayden Cho
 import java.util.*;
 import java.lang.*;
-
+import java.awt.Graphics2D;
+import java.awt.Graphics;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.*;
+import javax.swing.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Arc2D;
 public class Hangman 
 {
     private int max=0;
@@ -12,6 +19,18 @@ public class Hangman
      */
     public static void main(String[] args) 
     {
+        JFrame frame = new JFrame();
+
+        frame.setSize(200,375); //invoked the method setSize on the implicit parameter frame
+        frame.setTitle("Hangman"); 
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Graphiks g = new Graphiks();
+        frame.add(g);
+
+        frame.setVisible(true);
+        
+        Graphiks yy =new Graphiks();
         System.out.println('\f');
         //creates instances of Word and an ArrayList of Word objects.
         String man[] = new String[7];
@@ -37,27 +56,27 @@ public class Hangman
         Word c=new NameWord("Jayden", "Proper Noun", "He is a Korean male.");
         Word d=new NameWord("Abhi", "Proper Noun", "This is a Bee.");
         Word y=new NameWord("Basit", "Proper Noun", "He is related to Zayn Malik.");
-        
+
         Word f=new LocationWord("Stevenson", "Proper Noun", "It is a school");
-        Word g=new LocationWord("Hollywood", "Proper Noun", "It is a sign.");
+        Word gg=new LocationWord("Hollywood", "Proper Noun", "It is a sign.");
         Word h=new LocationWord("Chicago", "Proper Noun", "This is the Windy City.");
         Word z=new LocationWord("Yellowstone", "Proper Noun", "It is a park.");
         Word j=new LocationWord("Stonehenge", "Proper Noun", "It is a rocky thing in England.");
-        
+
         Word k=new AnimalWord("yak", "noun", "This is an animal with horns.");
         Word l=new AnimalWord("buffalo", "noun", "Wild Wings");
         Word m=new AnimalWord("elephant", "noun", "Banana Republic logo.");
         Word n=new AnimalWord("orangutan", "noun", "This is a primate.");
         Word o=new AnimalWord("lizard", "noun", "The gecko from Geico is this animal.");
-        
+
         Word p=new ObjectWord("jazz", "noun", "This is a type of music.");
         Word q=new ObjectWord("bagpipes", "noun", "This is an instrument in Europe.");
         Word r=new ObjectWord("BlueJ", "Proper Noun", "This is a Computer thing.");
         Word s=new ObjectWord("Adidas", "Proper Noun", "This is a brand.");
         Word t=new ObjectWord("basketball", "noun", "This is a sport.");
-        
+
         ArrayList<Word> words=new ArrayList<Word>();
-        words.add(a);words.add(b);words.add(c);words.add(d);words.add(y);words.add(f);words.add(g);words.add(h);words.add(z);words.add(j); 
+        words.add(a);words.add(b);words.add(c);words.add(d);words.add(y);words.add(f);words.add(gg);words.add(h);words.add(z);words.add(j); 
         words.add(k);words.add(l);words.add(m);words.add(n);words.add(o);words.add(p);words.add(q);words.add(r);words.add(s);words.add(t);
         String next="y";
 
@@ -117,8 +136,8 @@ public class Hangman
             System.out.println("\n\nPart of Speech: " + WORD.getPartOfSpeech());
 
             while(count<hangman1.max)
-            {      
-
+            {   
+                frame.repaint();
                 String guess1="asdf";
                 System.out.print("\nLetters: " + WORD.getNumLetters());
                 boolean repeat=true;
@@ -178,7 +197,6 @@ public class Hangman
                 //Makes guesses case insensitive, but will make proper nouns have first letter capital even if guess was lowercase when progress is displayed.
                 for(int i=0;i<letters.length;i++)
                 {
-
                     if(Character.toLowerCase(letters[i])==Character.toLowerCase(guess))
                     {
                         if (WORD.getPartOfSpeech().equals("Proper Noun")&& i==0)
@@ -199,6 +217,9 @@ public class Hangman
                 {
                     wrong.add(guess);
                     count++;
+                    yy.nextCount();
+                    frame.add(yy);
+                    frame.setVisible(true);
                 }
 
                 System.out.println("\nYou have guessed incorrectly: "+ "\t\t" + "Guesses Left: "+ + (hangman1.max-count));   
@@ -225,7 +246,6 @@ public class Hangman
                         System.out.println("\n\nCLUE:"+ WORD.getFinalHint());
                     }
                 }
-
                 if (Arrays.equals( letters,  progress))
                 {
                     System.out.println ("\n\nCongrats, you have guessed the word");
@@ -237,13 +257,15 @@ public class Hangman
             }
             if (!Arrays.equals( letters,  progress))
             {
+                
                 System.out.println("\nYou Lost!!!\n");
                 System.out.println("The word was: " + WORD.getWord() + "\n");
+                yy.resetCount();
             }
             System.out.println("Keep Going? Enter Y to continue, anything else to quit: ");
             Scanner scan = new Scanner(System.in);
             next = scan.nextLine();
-
+            yy.resetCount();
         }
         System.exit(0);
     }
@@ -253,11 +275,11 @@ public class Hangman
     {
         if (choice1==1)
         {
-            max=10;
+            max=9;
         }
         else if (choice1==2)
         {
-            max=7;
+            max=6;
         }
     }
 
