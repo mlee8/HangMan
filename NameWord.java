@@ -1,4 +1,8 @@
-
+/**
+ * Hangman
+ * Michael Lee, David Hou, Jayden Cho
+ * Final APCS Project 
+ */
 public class NameWord extends Word
 {
 

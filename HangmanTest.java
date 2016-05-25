@@ -1,4 +1,7 @@
-
+/**
+ * Hangman Test
+ * Michael Lee, David Hou, Jayden Cho
+ */
 
 import static org.junit.Assert.*;
 import org.junit.After;

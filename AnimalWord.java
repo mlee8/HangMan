@@ -1,3 +1,8 @@
+/**
+ * Hangman
+ * Michael Lee, David Hou, Jayden Cho
+ * Final APCS Project 
+ */
 public class AnimalWord extends Word
 {
     private String finalHint;

@@ -1,3 +1,8 @@
+/**
+ * Hangman
+ * Michael Lee, David Hou, Jayden Cho
+ * Final APCS Project 
+ */
 public class LocationWord extends Word
 {
     private String finalHint;

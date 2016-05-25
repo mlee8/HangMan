@@ -1,9 +1,7 @@
 
 /**
- * Write a description of class Graphics here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Hangman Graphics
+ * Michael Lee, David Hou, Jayden Cho
  */
 
 import java.awt.Graphics2D;

@@ -1,4 +1,8 @@
-
+/**
+ * Hangman
+ * Michael Lee, David Hou, Jayden Cho
+ * Final APCS Project 
+ */
 public class ObjectWord extends Word
 {
     private String finalHint;
