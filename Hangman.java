@@ -100,7 +100,7 @@ public class Hangman
             //this outer while loop makes sure that either 1 or 2 was entered for difficulty. Prompts user to re-enter a difficulty
             while (choice!=1 && choice!=2)
             {
-                System.out.println("Please Enter 1 for easy, enter 2 for hard: ");
+                System.out.println("Please Enter 1 for easy, enter 2 for hard: q");
 
                 //exception caused by not entering an integer for difficulty is caught. Prompts user to re-enter a difficulty
                 boolean isCorrect=false;
@@ -147,12 +147,9 @@ public class Hangman
                     System.out.println("\n \nGuess a letter: "); 
 
                     try{
-
                         Scanner scan=new Scanner(System.in);
                         guess1=scan.next();
-
                         exception=true;
-
                     } catch(InputMismatchException e) {
                         System.out.println("Please do not enter a number, enter a letter: ");
                     }
@@ -166,10 +163,8 @@ public class Hangman
                         {
                             if (Character.toLowerCase(guess1.charAt(0))==Character.toLowerCase((progress[i])))
                             {
-
                                 repeat=true;
                             }
-
                         }
                         if(wrong.contains(guess1.charAt(0)))
                         {
@@ -179,9 +174,7 @@ public class Hangman
                         {
                             System.out.println("\nYou have already entered this letter, please enter a new one.");
                         }
-
                     }
-
                 }
                 System.out.println('\f');
 
@@ -249,9 +242,7 @@ public class Hangman
                     System.out.println ("\n\nCongrats, you have guessed the word");
                     count=hangman1.max;
                     words.remove(index);
-
                 }
-
             }
             if (!Arrays.equals( letters,  progress))
             {
@@ -259,11 +250,11 @@ public class Hangman
                 System.out.println("\nYou Lost!!!\n");
                 System.out.println("The word was: " + WORD.getWord() + "\n"); 
             }
-   
             System.out.println("Keep Going? Enter Y to continue, anything else to quit: ");
             Scanner scan = new Scanner(System.in);
             next = scan.nextLine();
-            if(scan.equals("y")) yy.resetCount();
+            if(scan.equals("y")) 
+                yy.resetCount();
         }
         System.exit(0);
     }
