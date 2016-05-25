@@ -25,12 +25,10 @@ public class Hangman
         frame.setTitle("Hangman"); 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Graphiks g = new Graphiks();
-        frame.add(g);
+        Graphiks yy = new Graphiks();
+        frame.add(yy);
 
         frame.setVisible(true);
-        
-        Graphiks yy =new Graphiks();
         System.out.println('\f');
         //creates instances of Word and an ArrayList of Word objects.
         String man[] = new String[7];
@@ -87,6 +85,7 @@ public class Hangman
             //creates character array letters for the random word that was chosen, creates an ArrayList "wrong" to add wrong guesses to
             //creates ArrayList wrong of Characters to keep track of wrong guesses
             //creates character array progress to keep track of correct guesses 
+            yy.resetCount();
             System.out.println('\f');
             int index=(int)(Math.random()*words.size());
             Word WORD=words.get(index);
@@ -229,19 +228,19 @@ public class Hangman
                 }
                 if(correct==false)
                 {
-                    if (count==3)
+                    if (count==2)
                     {
                         System.out.println("\n\nCLUE:"+ WORD.hint1());
                     }
-                    else if(count==4)
+                    else if(count==3)
                     {
                         System.out.println("\n\nCLUE:"+ WORD.hint2());
                     }
-                    else if(count==5)
+                    else if(count==4)
                     {
                         System.out.println("\n\nCLUE:"+ WORD.hintCategory());
                     }
-                    else if(count==6)
+                    else if(count==5)
                     {
                         System.out.println("\n\nCLUE:"+ WORD.getFinalHint());
                     }
@@ -257,15 +256,15 @@ public class Hangman
             }
             if (!Arrays.equals( letters,  progress))
             {
-                
+                frame.repaint();
                 System.out.println("\nYou Lost!!!\n");
-                System.out.println("The word was: " + WORD.getWord() + "\n");
-                yy.resetCount();
+                System.out.println("The word was: " + WORD.getWord() + "\n"); 
             }
+   
             System.out.println("Keep Going? Enter Y to continue, anything else to quit: ");
             Scanner scan = new Scanner(System.in);
             next = scan.nextLine();
-            yy.resetCount();
+            if(scan.equals("y")) yy.resetCount();
         }
         System.exit(0);
     }
