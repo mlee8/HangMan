@@ -18,9 +18,12 @@ public class Hangman
      */
     public static void main(String[] args) 
     {
+        /**
+         * creates panel and frame, where it will make graphics
+         */
         JFrame frame = new JFrame();
 
-        frame.setSize(200,375); //invoked the method setSize on the implicit parameter frame
+        frame.setSize(200,375); 
         frame.setTitle("Hangman"); 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -145,7 +148,8 @@ public class Hangman
                 {
                     repeat=false;
                     System.out.println("\n \nGuess a letter: "); 
-
+                    
+                    //catches exception if number is entered instead of letter
                     try{
                         Scanner scan=new Scanner(System.in);
                         guess1=scan.next();
@@ -153,7 +157,7 @@ public class Hangman
                     } catch(InputMismatchException e) {
                         System.out.println("Please do not enter a number, enter a letter: ");
                     }
-
+                    
                     if(guess1.length()!=1){
                         System.out.println("\n \nPlease enter one letter");
 
@@ -204,6 +208,8 @@ public class Hangman
                     }
                     System.out.print(progress[i]);
                 }
+                
+                //adds incorrect letters to array, draws parts of Hangman when guesses are incorrect 
                 if(correct==false)
                 {
                     wrong.add(guess);
@@ -218,6 +224,8 @@ public class Hangman
                 {
                     System.out.print(wrong.get(i) + " ");
                 }
+                
+                //prints clue according to amount of incorrect guesses 
                 if(correct==false)
                 {
                     if (count==2)
@@ -244,6 +252,7 @@ public class Hangman
                     words.remove(index);
                 }
             }
+            
             if (!Arrays.equals( letters,  progress))
             {
                 frame.repaint();
