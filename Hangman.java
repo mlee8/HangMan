@@ -1,4 +1,8 @@
-//Michael Lee, David Hou, Jayden Cho
+/**
+ * Hangman
+ * Michael Lee, David Hou, Jayden Cho
+ * Final APCS Project 
+ */
 import java.util.*;
 import java.lang.*;
 import java.awt.Graphics2D;
@@ -19,7 +23,10 @@ public class Hangman
     public static void main(String[] args) 
     {
         /**
-         * creates panel and frame, where it will make graphics
+         * creates panel and frame, where graphics will be made
+         */
+        /**
+         * 
          */
         JFrame frame = new JFrame();
 
@@ -32,20 +39,19 @@ public class Hangman
 
         frame.setVisible(true);
         System.out.println('\f');
-        //creates instances of Word and an ArrayList of Word objects.
-        String man[] = new String[7];
-        // man[0] = " --\n   |\n   |\n   |\n_____\n";
-        //man[1] = " --\n o |\n   |\n   |\n_____\n";
-        // man[2] = " --\n o |\n/  |\n   |\n_____\n";
-        //man[3] = " --\n o |\n/| |\n   |\n_____\n";
-        // man[4] = " --\n o |\n/|\\|\n   |\n_____\n";
-        // man[5] = " --\n o |\n/|\\|\n/  |\n_____\n";
+        
+        /**
+         * Game title page created
+         * creates instances of Word and an ArrayList of Word objects.
+         */
+        String man[] = new String[1];
+
         System.out.println("\t\t WELCOME TO THE GAME OF HANGMAN");
         System.out.println("\n\t Created by: Michael Lee, David Hou, Jayden Cho");
         System.out.print("\n\n");
-        man[6] = "\t\t\t\t--\n\t\t\t\t o |\n\t\t\t\t/|\\|\n\t\t\t\t/ \\|\n\t\t\t\t_____\n\t\t\t\t";
+        man[1] = "\t\t\t\t--\n\t\t\t\t o |\n\t\t\t\t/|\\|\n\t\t\t\t/ \\|\n\t\t\t\t_____\n\t\t\t\t";
 
-        System.out.println(man[6]);
+        System.out.println(man[1]);
         System.out.print("\n\n"); 
         System.out.println("Enter anything to begin game:");
         Scanner scan2=new Scanner (System.in);
@@ -80,13 +86,18 @@ public class Hangman
         words.add(k);words.add(l);words.add(m);words.add(n);words.add(o);words.add(p);words.add(q);words.add(r);words.add(s);words.add(t);
         String next="y";
 
-        //while loop to run the game multiple times if user enters y
+        /**
+         *  while loop to run the game multiple times if user enters y
+         */
         while (next.equals("Y") || next.equals("y"))
         {
-            //chooses a random word in words ArrayList to use for the game
-            //creates character array letters for the random word that was chosen, creates an ArrayList "wrong" to add wrong guesses to
-            //creates ArrayList wrong of Characters to keep track of wrong guesses
-            //creates character array progress to keep track of correct guesses 
+            /**
+             * chooses a random word in words ArrayList to use for the game
+             * creates character array letters for the random word that was chosen, creates an ArrayList "wrong" to add wrong guesses to
+             * creates ArrayList wrong of Characters to keep track of wrong guesses
+             * creates character array progress to keep track of correct guesses 
+             */
+
             yy.resetCount();
             System.out.println('\f');
             int index=(int)(Math.random()*words.size());
@@ -100,12 +111,17 @@ public class Hangman
             }
 
             int choice = 0;   
-            //this outer while loop makes sure that either 1 or 2 was entered for difficulty. Prompts user to re-enter a difficulty
+            /**
+             * this outer while loop makes sure that either 1 or 2 was entered for difficulty. Prompts user to re-enter a difficulty
+             */
+
             while (choice!=1 && choice!=2)
             {
                 System.out.println("Please Enter 1 for easy, enter 2 for hard: q");
+                /**
+                 * exception caused by not entering an integer for difficulty is caught. Prompts user to re-enter a difficulty
+                 */
 
-                //exception caused by not entering an integer for difficulty is caught. Prompts user to re-enter a difficulty
                 boolean isCorrect=false;
                 while (isCorrect==false)
                 {
@@ -132,7 +148,10 @@ public class Hangman
             System.out.println('\f');
             Hangman hangman1=new Hangman();
             hangman1.changeDifficulty(choice); 
-            //where the main things happen
+            /**
+             * main for loop to run game
+             */
+
             int count=0;
             System.out.println("\n\nPart of Speech: " + WORD.getPartOfSpeech());
 
@@ -143,13 +162,19 @@ public class Hangman
                 System.out.print("\nLetters: " + WORD.getNumLetters());
                 boolean repeat=true;
                 boolean exception=false;
-                //Checks if input is valid. Input must be only one letter and have not been guessed yet.
+                /**
+                 * Checks if input is valid. Input must be only one letter and have not been guessed yet.
+                 */
                 while(guess1.length()!=1 || repeat==true)
                 {
                     repeat=false;
                     System.out.println("\n \nGuess a letter: "); 
-                    
-                    //catches exception if number is entered instead of letter
+
+                    /**
+                     * compares guess with word that is in a Character array
+                     * catches exception if number is entered instead of letter
+                     * makes sure guesses are not repeated, and are only one letter 
+                     */
                     try{
                         Scanner scan=new Scanner(System.in);
                         guess1=scan.next();
@@ -157,7 +182,7 @@ public class Hangman
                     } catch(InputMismatchException e) {
                         System.out.println("Please do not enter a number, enter a letter: ");
                     }
-                    
+
                     if(guess1.length()!=1){
                         System.out.println("\n \nPlease enter one letter");
 
@@ -188,7 +213,9 @@ public class Hangman
 
                 System.out.println("Your current progress is: "); 
 
-                //Checks to see if the guess is a letter in the word. If it is, it will add the character guess into progress array and print it. 
+                /**
+                 * Checks to see if the guess is a letter in the word. If it is, it will add the character guess into progress array and print it. 
+                 */
                 //Makes guesses case insensitive, but will make proper nouns have first letter capital even if guess was lowercase when progress is displayed.
                 for(int i=0;i<letters.length;i++)
                 {
@@ -208,8 +235,10 @@ public class Hangman
                     }
                     System.out.print(progress[i]);
                 }
-                
-                //adds incorrect letters to array, draws parts of Hangman when guesses are incorrect 
+
+                /**
+                 * adds incorrect letters to array, draws parts of Hangman when guesses are incorrect 
+                 */
                 if(correct==false)
                 {
                     wrong.add(guess);
@@ -224,8 +253,10 @@ public class Hangman
                 {
                     System.out.print(wrong.get(i) + " ");
                 }
-                
-                //prints clue according to amount of incorrect guesses 
+
+                /**
+                 * prints clue according to amount of incorrect guesses 
+                 */
                 if(correct==false)
                 {
                     if (count==2)
@@ -252,7 +283,10 @@ public class Hangman
                     words.remove(index);
                 }
             }
-            
+
+            /**
+             * Allows user to make decision of keeping going or quitting
+             */
             if (!Arrays.equals( letters,  progress))
             {
                 frame.repaint();
@@ -268,7 +302,9 @@ public class Hangman
         System.exit(0);
     }
 
-    //method to link a variable for maximum guesses to a chosen difficulty
+    /**
+     * method to link a variable for maximum guesses to a chosen difficulty
+     */
     public void changeDifficulty(int choice1)
     {
         if (choice1==1)
