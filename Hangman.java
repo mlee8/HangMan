@@ -49,7 +49,7 @@ public class Hangman
         System.out.println("\t\t WELCOME TO THE GAME OF HANGMAN");
         System.out.println("\n\t Created by: Michael Lee, David Hou, Jayden Cho");
         System.out.print("\n\n");
-        man[1] = "\t\t\t\t--\n\t\t\t\t o |\n\t\t\t\t/|\\|\n\t\t\t\t/ \\|\n\t\t\t\t_____\n\t\t\t\t";
+        man[0] = "\t\t\t\t--\n\t\t\t\t o |\n\t\t\t\t/|\\|\n\t\t\t\t/ \\|\n\t\t\t\t_____\n\t\t\t\t";
 
         System.out.println(man[1]);
         System.out.print("\n\n"); 
