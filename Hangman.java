@@ -7,8 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.*;
 import javax.swing.*;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Arc2D;
+
 public class Hangman 
 {
     private int max=0;
