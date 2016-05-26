@@ -12,6 +12,7 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Arc2D;
+import java.awt.Color;
 public class Graphiks extends JPanel
 {
     int count=0;
@@ -24,11 +25,14 @@ public class Graphiks extends JPanel
     {
         count=0;
     }
-    
+
     public void paintComponent(Graphics g)
     {
         Graphics2D g2 = (Graphics2D) g; 
+        super.paintComponent(g);
+        setBackground(new Color(144,195,212));
 
+   
         g2.setStroke(new BasicStroke(5,BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL));
         g2.setColor(Color.BLACK); 
         g.drawLine(50, 30, 50, 10);
