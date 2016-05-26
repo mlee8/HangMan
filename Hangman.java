@@ -25,9 +25,7 @@ public class Hangman
         /**
          * creates panel and frame, where graphics will be made
          */
-        /**
-         * 
-         */
+        
         JFrame frame = new JFrame();
 
         frame.setSize(200,375); 
@@ -47,11 +45,12 @@ public class Hangman
         String man[] = new String[1];
 
         System.out.println("\t\t WELCOME TO THE GAME OF HANGMAN");
+      
         System.out.println("\n\t Created by: Michael Lee, David Hou, Jayden Cho");
         System.out.print("\n\n");
         man[0] = "\t\t\t\t--\n\t\t\t\t o |\n\t\t\t\t/|\\|\n\t\t\t\t/ \\|\n\t\t\t\t_____\n\t\t\t\t";
 
-        System.out.println(man[1]);
+        System.out.println(man[0]);
         System.out.print("\n\n"); 
         System.out.println("Enter anything to begin game:");
         Scanner scan2=new Scanner (System.in);
@@ -117,7 +116,7 @@ public class Hangman
 
             while (choice!=1 && choice!=2)
             {
-                System.out.println("Please Enter 1 for easy, enter 2 for hard: q");
+                System.out.println("Please Enter 1 for easy, enter 2 for hard: ");
                 /**
                  * exception caused by not entering an integer for difficulty is caught. Prompts user to re-enter a difficulty
                  */
@@ -278,7 +277,7 @@ public class Hangman
                 }
                 if (Arrays.equals( letters,  progress))
                 {
-                    System.out.println ("\n\nCongrats, you have guessed the word");
+                    System.out.println ("\n\nCONGRATS, you have guessed the word!!!");
                     count=hangman1.max;
                     words.remove(index);
                 }
